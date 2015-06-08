@@ -9,7 +9,7 @@ from setuptools.command.test import test as TestCommand
 
 
 class PyTest(TestCommand):
-    user_options = [('pytest-args=', 'a', "Arguments to pass to py.test")]
+    user_options = [('pytest-args=', 'a', 'Arguments to pass to py.test')]
 
     def initialize_options(self):
         TestCommand.initialize_options(self)
@@ -37,41 +37,42 @@ readme = open(os.path.join(here, 'README.rst')).read()
 requires = []
 
 tests_require = [
-    "pytest-cov",
-    "pytest",
-    "mock",
+    'pytest-cov',
+    'pytest',
+    'mock',
 ]
 
 
 classifiers = [
-    "Development Status :: 3 - Alpha",
-    "Environment :: Console",
-    "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
-    "Programming Language :: Python :: 2",
-    "Programming Language :: Python :: 2.7",
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.3",
-    "Programming Language :: Python :: 3.4",
-    "Programming Language :: Python :: Implementation :: CPython",
-    "Programming Language :: Python :: Implementation :: PyPy",
-    "Topic :: Internet :: WWW/HTTP",
-    "Topic :: Internet :: WWW/HTTP :: Indexing/Search",
-    "Topic :: Software Development :: Libraries",
+    'Development Status :: 3 - Alpha',
+    'Environment :: Console',
+    'Intended Audience :: Developers',
+    'License :: OSI Approved :: MIT License',
+    'Programming Language :: Python :: 2',
+    'Programming Language :: Python :: 2.7',
+    'Programming Language :: Python :: 3',
+    'Programming Language :: Python :: 3.3',
+    'Programming Language :: Python :: 3.4',
+    'Programming Language :: Python :: Implementation :: CPython',
+    'Programming Language :: Python :: Implementation :: PyPy',
+    'Topic :: Internet :: WWW/HTTP',
+    'Topic :: Internet :: WWW/HTTP :: Indexing/Search',
+    'Topic :: Software Development :: Libraries',
 ]
 
 setup(
-    name="csquery",
+    name='csquery',
     version=version,
-    description="A simple query builder for Amazon Cloudsearch structured query parser.",  # NOQA
+    description='A simple query builder for Amazon Cloudsearch structured query parser.',  # NOQA
     long_description=readme,
-    url="https://github.com/tell-k/csquery",
-    author="tell-k",
-    author_email="ffk2005 at gmail.com",
+    url='https://github.com/tell-k/csquery',
+    keywords='aws amazon cloudsearch querybuilder structured',
+    author='tell-k',
+    author_email='ffk2005 at gmail.com',
     classifiers=classifiers,
     install_requires=requires,
     tests_require=tests_require,
     cmdclass={'test': PyTest},
-    packages=find_packages(exclude=["tests"]),
+    packages=find_packages(exclude=['tests']),
     license='MIT',
 )
