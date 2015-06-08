@@ -233,7 +233,6 @@ History
 ---------------------
 * First release
 
-
 .. |travis| image:: https://travis-ci.org/tell-k/csquery.svg?branch=master
     :target: https://travis-ci.org/tell-k/csquery
 
