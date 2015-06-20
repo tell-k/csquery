@@ -1,6 +1,6 @@
 A simple query builder for Amazon Cloudsearch Structured query parser.
 
-|travis| |coveralls| |requires|
+|travis| |coveralls| |downloads| |version| |license| |requires|
 
 .. contents::
    :local:
@@ -243,3 +243,15 @@ History
 .. |requires| image:: https://requires.io/github/tell-k/csquery/requirements.svg?branch=master
     :target: https://requires.io/github/tell-k/csquery/requirements/?branch=master
     :alt: requirements status
+
+.. |downloads| image:: https://img.shields.io/pypi/dm/csquery.svg
+    :target: http://pypi.python.org/pypi/csquery/
+    :alt: downloads
+
+.. |version| image:: https://img.shields.io/pypi/v/csquery.svg
+    :target: http://pypi.python.org/pypi/csquery/
+    :alt: latest version
+
+.. |license| image:: https://img.shields.io/pypi/l/csquery.svg
+    :target: http://pypi.python.org/pypi/csquery/
+    :alt: license
