@@ -110,7 +110,7 @@ class TestFormatValue(object):
     def test_it__with_multi_encoding(self):
         from csquery.structured import Expression
         import six
-        binary_value = six.binary_type("あ")
+        binary_value = six.text_type("あ").encode("utf-8")
         text_value = six.text_type("あ")
 
         self._call_fut(
