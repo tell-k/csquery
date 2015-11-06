@@ -34,7 +34,9 @@ with open(os.path.join(here, 'csquery', '__init__.py'), 'r') as f:
 
 readme = open(os.path.join(here, 'README.rst')).read()
 
-requires = []
+requires = [
+    'six'
+]
 
 tests_require = [
     'pytest-cov',

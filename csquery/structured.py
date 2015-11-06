@@ -9,10 +9,17 @@
 from __future__ import division, print_function, absolute_import, unicode_literals  # NOQA
 
 from collections import OrderedDict
+import six
 
 
 def escape(string):
     return string.replace("'", "\'").replace('\\', '\\\\')
+
+
+def text_(s, encoding='utf-8', errors='strict'):
+    if isinstance(s, six.binary_type):
+        return s.decode(encoding, errors)
+    return s  # pragma: no cover
 
 
 def format_value(value):
@@ -21,15 +28,18 @@ def format_value(value):
     if type(value) == Expression:
         return value()
     try:
+        # if format_value's input only text_type, this sentence is unnecessary.
+        value = text_(value)
+
         if (value.startswith('(') and value.endswith(')'))\
                 or (value.startswith('{') and value.endswith(']'))\
                 or (value.startswith('[') and value.endswith('}'))\
                 or (value.startswith('[') and value.endswith(']'))\
                 or (value.startswith("'") and value.endswith("'"))\
                 or ('=' in value):
-            return str(escape(value))
+            return six.text_type(escape(value))
     except AttributeError:
-        return str(value)
+        return six.text_type(value)
     return "'{}'".format(escape(value))
 
 
