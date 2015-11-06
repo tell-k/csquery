@@ -231,14 +231,15 @@ Contributors
 
 Thanks.
 
-* podhmo
+*  podhmo
 
 History
 =======
 
 0.1.1(Nov 6, 2015)
 ---------------------
-* Fixed bug. #1.
+
+* Fixed bug. `#1 <https://github.com/tell-k/csquery/pull/1>`_.
 
 0.1.0(Jun 8, 2015)
 ---------------------
