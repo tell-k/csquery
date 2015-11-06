@@ -107,6 +107,19 @@ class TestFormatValue(object):
             field("Alec'Guinness", 'actors')
         )
 
+    def test_it__with_multi_encoding(self):
+        from csquery.structured import Expression
+        import six
+        binary_value = six.binary_type("あ")
+        text_value = six.text_type("あ")
+
+        self._call_fut(
+            Expression('and', title=binary_value)
+        )
+        self._call_fut(
+            Expression('and', title=text_value)
+        )
+
 
 class TestFieldValue(object):
 
