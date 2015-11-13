@@ -13,7 +13,7 @@ import six
 
 
 def escape(string):
-    return string.replace("'", "\'").replace('\\', '\\\\')
+    return string.replace('\\', '\\\\').replace("'", "\\'")
 
 
 def text_(s, encoding='utf-8', errors='strict'):
