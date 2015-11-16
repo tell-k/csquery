@@ -78,7 +78,6 @@ class TestFormatValue(object):
         assert '[1900,2000]' == self._call_fut('[1900,2000]')
         assert '{,2000]' == self._call_fut('{,2000]')
         assert '[1900,}' == self._call_fut('[1900,}')
-        assert r"\'test\'" == self._call_fut("'test'")
         assert 'field=test' == self._call_fut('field=test')
         assert '1' == self._call_fut(1)
         assert "actors:'Alec Guinness'" == self._call_fut(
@@ -94,8 +93,8 @@ class TestFormatValue(object):
             Expression('and', title="st'ar")
         )
 
-        assert r"\'te\\st\'" == self._call_fut(r"'te\st'")
-        assert r"\'te\'st\'" == self._call_fut("'te'st'")
+        assert r"'te\\st'" == self._call_fut(r"te\st")
+        assert r"'te\'st'" == self._call_fut("te'st")
 
         assert r"field=te\\st" == self._call_fut(r"field=te\st")
         assert r"field=te\'st" == self._call_fut("field=te'st")
