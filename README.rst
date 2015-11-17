@@ -231,10 +231,16 @@ Contributors
 
 Thanks.
 
-*  podhmo
+* @podhmo
+* @furi
 
 History
 =======
+
+0.1.2(Nov 18, 2015)
+---------------------
+
+* Fixed escape bug. `#2 <https://github.com/tell-k/csquery/pull/2>`_.
 
 0.1.1(Nov 6, 2015)
 ---------------------

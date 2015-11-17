@@ -22,6 +22,7 @@ class TestEscape(object):
 
     def test_it(self):
         assert r"test\'test" == self._call_fut("test'test")
+        assert r"\'test\'test\'" == self._call_fut("'test'test'")
         assert r"test\\test" == self._call_fut(r"test\test")
 
 
