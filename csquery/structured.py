@@ -13,7 +13,7 @@ import six
 
 
 def escape(string):
-    return string.replace("'", "\'").replace('\\', '\\\\')
+    return string.replace('\\', '\\\\').replace("'", "\\'")
 
 
 def text_(s, encoding='utf-8', errors='strict'):
@@ -35,7 +35,6 @@ def format_value(value):
                 or (value.startswith('{') and value.endswith(']'))\
                 or (value.startswith('[') and value.endswith('}'))\
                 or (value.startswith('[') and value.endswith(']'))\
-                or (value.startswith("'") and value.endswith("'"))\
                 or ('=' in value):
             return six.text_type(escape(value))
     except AttributeError:

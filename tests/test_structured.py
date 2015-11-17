@@ -21,7 +21,7 @@ class TestEscape(object):
         return self._get_target()(*args, **kwargs)
 
     def test_it(self):
-        assert "test\'test" == self._call_fut("test'test")
+        assert r"test\'test" == self._call_fut("test'test")
         assert r"test\\test" == self._call_fut(r"test\test")
 
 
@@ -78,7 +78,6 @@ class TestFormatValue(object):
         assert '[1900,2000]' == self._call_fut('[1900,2000]')
         assert '{,2000]' == self._call_fut('{,2000]')
         assert '[1900,}' == self._call_fut('[1900,}')
-        assert "'test'" == self._call_fut("'test'")
         assert 'field=test' == self._call_fut('field=test')
         assert '1' == self._call_fut(1)
         assert "actors:'Alec Guinness'" == self._call_fut(
@@ -90,20 +89,20 @@ class TestFormatValue(object):
         assert r"(and title:'st\\ar')" == self._call_fut(
             Expression('and', title=r'st\ar')
         )
-        assert "(and title:'st\'ar')" == self._call_fut(
+        assert r"(and title:'st\'ar')" == self._call_fut(
             Expression('and', title="st'ar")
         )
 
-        assert r"'te\\st'" == self._call_fut(r"'te\st'")
-        assert "'te\'st'" == self._call_fut("'te'st'")
+        assert r"'te\\st'" == self._call_fut(r"te\st")
+        assert r"'te\'st'" == self._call_fut("te'st")
 
         assert r"field=te\\st" == self._call_fut(r"field=te\st")
-        assert "field=te\'st" == self._call_fut("field=te'st")
+        assert r"field=te\'st" == self._call_fut("field=te'st")
 
         assert r"actors:'Alec\\Guinness'" == self._call_fut(
             field(r'Alec\Guinness', 'actors')
         )
-        assert "actors:'Alec\'Guinness'" == self._call_fut(
+        assert r"actors:'Alec\'Guinness'" == self._call_fut(
             field("Alec'Guinness", 'actors')
         )
 
