@@ -86,7 +86,9 @@ class TestFormatValue(object):
         )
         assert "'test'" == self._call_fut('test')
 
-        # escape value
+    def test_it_for_escape(self):
+        from csquery.structured import Expression, field
+
         assert r"(and title:'st\\ar')" == self._call_fut(
             Expression('and', title=r'st\ar')
         )
