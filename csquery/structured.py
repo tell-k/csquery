@@ -34,8 +34,9 @@ def format_value(value):
         if (value.startswith('(') and value.endswith(')'))\
                 or (value.startswith('{') and value.endswith(']'))\
                 or (value.startswith('[') and value.endswith('}'))\
-                or (value.startswith('[') and value.endswith(']'))\
-                or ('=' in value):
+                or (value.startswith('[') and value.endswith(']')):
+            return six.text_type(value)
+        elif '=' in value:
             return six.text_type(escape(value))
     except AttributeError:
         return six.text_type(value)
