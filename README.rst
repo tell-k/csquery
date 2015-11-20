@@ -237,6 +237,11 @@ Thanks.
 History
 =======
 
+0.1.3(Nov 20, 2015)
+---------------------
+
+* Fixed over escaped expression. `#3 <https://github.com/tell-k/csquery/pull/3>`_.
+
 0.1.2(Nov 18, 2015)
 ---------------------
 
