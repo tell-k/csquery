@@ -109,6 +109,15 @@ class TestFormatValue(object):
             field("Alec'Guinness", 'actors')
         )
 
+    def test_it_for_escape__with_range_values(self):
+        from csquery.structured import and_
+        assert "(and release_date:[\'2000-01-01T00:00:00Z\', \'2010-01-01T00:00:00Z\'})" == self._call_fut(
+            and_(release_date="['2000-01-01T00:00:00Z', '2010-01-01T00:00:00Z'}")
+        )
+        assert "(and (and release_date:[\'2000-01-01T00:00:00Z\', \'2010-01-01T00:00:00Z\'}))" == self._call_fut(
+            and_(and_(release_date="['2000-01-01T00:00:00Z', '2010-01-01T00:00:00Z'}"))
+        )
+
     def test_it__with_multi_encoding(self):
         from csquery.structured import Expression
         import six
