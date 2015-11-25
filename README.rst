@@ -237,6 +237,11 @@ Thanks.
 History
 =======
 
+0.1.4(Nov 25, 2015)
+---------------------
+
+* Fixed unquoted field value. `#3 <https://github.com/tell-k/csquery/pull/4>`_.
+
 0.1.3(Nov 20, 2015)
 ---------------------
 
