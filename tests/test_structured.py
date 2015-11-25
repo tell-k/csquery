@@ -79,7 +79,6 @@ class TestFormatValue(object):
         assert '[1900,2000]' == self._call_fut('[1900,2000]')
         assert '{,2000]' == self._call_fut('{,2000]')
         assert '[1900,}' == self._call_fut('[1900,}')
-        assert 'field=test' == self._call_fut('field=test')
         assert '1' == self._call_fut(1)
         assert "actors:'Alec Guinness'" == self._call_fut(
             field('Alec Guinness', 'actors')
@@ -99,14 +98,15 @@ class TestFormatValue(object):
         assert r"'te\\st'" == self._call_fut(r"te\st")
         assert r"'te\'st'" == self._call_fut("te'st")
 
-        assert r"field=te\\st" == self._call_fut(r"field=te\st")
-        assert r"field=te\'st" == self._call_fut("field=te'st")
-
         assert r"actors:'Alec\\Guinness'" == self._call_fut(
             field(r'Alec\Guinness', 'actors')
         )
         assert r"actors:'Alec\'Guinness'" == self._call_fut(
             field("Alec'Guinness", 'actors')
+        )
+        
+        assert "'ジャン=ピエール・オーモン'" == self._call_fut(
+            'ジャン=ピエール・オーモン'
         )
 
     def test_it_for_escape__with_range_values(self):
@@ -114,11 +114,11 @@ class TestFormatValue(object):
 
         range_value = "['2000-01-01T00:00:00Z', '2010-01-01T00:00:00Z'}"
         expected = "(and release_date:"
-        expected += "[\'2000-01-01T00:00:00Z\', \'2010-01-01T00:00:00Z\'})"
+        expected += "['2000-01-01T00:00:00Z', '2010-01-01T00:00:00Z'})"
         assert expected == self._call_fut(and_(release_date=range_value))
 
         expected = "(and (and release_date:"
-        expected += "[\'2000-01-01T00:00:00Z\', \'2010-01-01T00:00:00Z\'}))"
+        expected += "['2000-01-01T00:00:00Z', '2010-01-01T00:00:00Z'}))"
         assert expected == self._call_fut(and_(and_(release_date=range_value)))
 
         assert "(and _id:['tt1000000','tt1005000'])" == self._call_fut(
@@ -277,10 +277,12 @@ class TestAnd_(object):
             not_('テスト', field='genres'),
             or_(
                 term('star', field='title', boost=2),
-                term('star', field='plot')
-            )
+                term('star', field='plot'),
+                
+            ),
+            boost='plot'
         )
-        expected = "(and (not field=genres 'テスト') "
+        expected = "(and boost=plot (not field=genres 'テスト') "
         expected += "(or (term field=title boost=2 'star') "
         expected += "(term field=plot 'star')))"
         assert expected == actual()

@@ -35,11 +35,11 @@ def format_value(value):
                 or (value.startswith('{') and value.endswith(']'))\
                 or (value.startswith('[') and value.endswith('}'))\
                 or (value.startswith('[') and value.endswith(']')):
+
             return six.text_type(value)
-        elif '=' in value:
-            return six.text_type(escape(value))
     except AttributeError:
         return six.text_type(value)
+
     return "'{}'".format(escape(value))
 
 
@@ -59,6 +59,7 @@ def format_options(options={}):
                            for k, v in options.items()])
 
 
+@six.python_2_unicode_compatible
 class FieldValue(object):
 
     def __init__(self, value, name=None):
@@ -79,9 +80,11 @@ class FieldValue(object):
         return self.to_value()
 
     def __repr__(self):
-        return '<{}: {}>'.format(self.__class__.__name__, self.to_value())
+        value = '<{}: {}>'.format(self.__class__.__name__, self.to_value())
+        return value.encode('utf-8') if six.PY2 else value
 
 
+@six.python_2_unicode_compatible
 class Expression(object):
 
     def __init__(self, operator, options={}, *args, **kwargs):
@@ -105,7 +108,8 @@ class Expression(object):
         return self.query()
 
     def __repr__(self):
-        return '<{}: {}>'.format(self.__class__.__name__, self.query())
+        query = '<{}: {}>'.format(self.__class__.__name__, self.query())
+        return query.encode('utf-8') if six.PY2 else query
 
 
 def _get_option(keys, options):
