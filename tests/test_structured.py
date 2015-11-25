@@ -104,7 +104,7 @@ class TestFormatValue(object):
         assert r"actors:'Alec\'Guinness'" == self._call_fut(
             field("Alec'Guinness", 'actors')
         )
-        
+
         assert "'ジャン=ピエール・オーモン'" == self._call_fut(
             'ジャン=ピエール・オーモン'
         )
@@ -278,7 +278,7 @@ class TestAnd_(object):
             or_(
                 term('star', field='title', boost=2),
                 term('star', field='plot'),
-                
+
             ),
             boost='plot'
         )
@@ -442,10 +442,8 @@ class TestTerm(object):
     def test_it(self):
         actual = self._call_fut('star')
         assert "(term 'star')" == actual()
-
         actual = self._call_fut(2000)
         assert '(term 2000)' == actual()
-
         actual = self._call_fut(2000, field='year', boost=2)
         expected = '(term field=year boost=2 2000)'
         assert expected == actual()
